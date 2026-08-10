@@ -1,0 +1,497 @@
+/*
+ * Snoonu Design System — Colors & Typography
+ * Semantic CSS custom properties derived from Figma tokens.
+ * Source: _fig/Design_System_draft/tokens.css
+ *
+ * Usage:
+ *   @import url('./colors_and_type.css');
+ *   OR link as a stylesheet before your component CSS.
+ *
+ * Font loading:
+ *   English: Inter (Google Fonts)
+ *   Arabic:  Estedad (Google Fonts) — fallback: Noto Sans Arabic
+ *   Add to your HTML <head>:
+ *   <link rel="preconnect" href="https://fonts.googleapis.com">
+ *   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+ */
+
+/* ─────────────────────────────────────────────
+   BASE COLOR PALETTE
+   ───────────────────────────────────────────── */
+
+:root {
+  /* Primary — Brand Red */
+  --color-primary-50:  #FFE7E6;
+  --color-primary-100: #FFA9A6;
+  --color-primary-200: #FF7D7D;
+  --color-primary-300: #F25055;
+  --color-primary-400: #E62734;
+  --color-primary-500: #D90217;   /* ★ MAIN BRAND RED */
+  --color-primary-600: #B30018;
+  --color-primary-700: #8C0017;
+  --color-primary-800: #660014;
+  --color-primary-900: #40000F;
+
+  /* Neutral / Grey */
+  --color-grey-50:  #FAFAFA;
+  --color-grey-100: #F5F5F5;
+  --color-grey-200: #EAEAEA;
+  --color-grey-300: #E0E0E0;
+  --color-grey-400: #D5D6D6;
+  --color-grey-500: #CBCBCB;
+  --color-grey-600: #B4B4B4;
+  --color-grey-700: #8C8C8D;
+  --color-grey-800: #707070;
+  --color-grey-900: #5A5A5A;
+
+  /* Graphite — Dark Mode Scale */
+  --color-graphite-50:  #4B4B4B;
+  --color-graphite-100: #444546;
+  --color-graphite-200: #323232;
+  --color-graphite-300: #2E2E2E;
+  --color-graphite-400: #2C2C2C;
+  --color-graphite-500: #272727;
+  --color-graphite-700: #222222;
+  --color-graphite-800: #1E1E1E;
+  --color-graphite-900: #121212;
+
+  /* Herbal — Green / Success */
+  --color-herbal-50:  #F0FDF4;
+  --color-herbal-100: #DCFCE7;
+  --color-herbal-200: #BBF7D0;
+  --color-herbal-400: #4ADE80;
+  --color-herbal-500: #22C55E;   /* ★ SUCCESS GREEN */
+  --color-herbal-600: #16A34A;
+  --color-herbal-700: #15803D;
+  --color-herbal-800: #166534;
+
+  /* Yellow — Warning / Promo */
+  --color-yellow-50:  #FFFFE6;
+  --color-yellow-200: #FFFB85;
+  --color-yellow-400: #FFE733;
+  --color-yellow-500: #FFDA0A;   /* ★ YELLOW / WARNING */
+  --color-yellow-600: #D9B100;
+  --color-yellow-700: #B38C00;
+
+  /* Orange — Energy / CTA variant */
+  --color-orange-50:  #FFEEE6;
+  --color-orange-100: #FFC7AD;
+  --color-orange-300: #FF855C;
+  --color-orange-400: #FF5F33;
+  --color-orange-500: #FF360A;   /* ★ ORANGE */
+  --color-orange-600: #D92100;
+  --color-orange-800: #8C0C00;
+
+  /* Cool Red — Error / Alert */
+  --color-cool-red-50:  #FFF2F0;
+  --color-cool-red-100: #FFF1F0;
+  --color-cool-red-500: #FF5C5F;  /* ★ ERROR RED */
+  --color-cool-red-600: #D93D44;
+  --color-cool-red-700: #B32935;
+  --color-cool-red-800: #8C1927;
+
+  /* Blue — Info / Link */
+  --color-blue-50:  #E6F6FF;
+  --color-blue-300: #52B1FF;
+  --color-blue-500: #017BFF;     /* ★ INFO BLUE */
+  --color-blue-600: #0062D9;
+  --color-blue-800: #00368C;
+
+  /* Electric Blue */
+  --color-electric-blue-50:  #E6EAFF;
+  --color-electric-blue-200: #7A88FF;
+  --color-electric-blue-300: #525DFF;
+  --color-electric-blue-800: #0E008C;
+
+  /* Violet — Premium / Special */
+  --color-violet-50:  #F4E6FF;
+  --color-violet-200: #BD80FF;
+  --color-violet-300: #A257FF;
+  --color-violet-400: #8036E9;
+  --color-violet-500: #6405FF;
+
+  /* Pink */
+  --color-pink-100: #FFF0F7;
+  --color-pink-400: #ED6FB7;
+  --color-pink-500: #E045A3;
+  --color-pink-600: #BA2D82;
+  --color-pink-900: #470B37;
+
+  /* Gold — Loyalty */
+  --color-gold-50:  #FFF9E6;
+  --color-gold-500: #FF9900;     /* ★ GOLD / LOYALTY */
+
+  /* Brown */
+  --color-brown-100: #FFF5D9;
+  --color-brown-500: #DC972F;
+  --color-brown-600: #B5731D;
+
+  /* Pure */
+  --color-black:     #000000;
+  --color-white:     #FFFFFF;
+
+  /* S+ Premium Brand Gradient stops */
+  --color-splus-1:   #FF5AC8;
+  --color-splus-2:   #FF5078;
+  --color-splus-3:   #FF8C28;
+}
+
+/* ─────────────────────────────────────────────
+   SEMANTIC COLOR TOKENS
+   ───────────────────────────────────────────── */
+
+:root {
+  /* Brand */
+  --brand:           var(--color-primary-500);
+  --brand-light:     var(--color-primary-50);
+  --brand-dark:      var(--color-primary-600);
+
+  /* Backgrounds */
+  --bg-app:          var(--color-grey-100);    /* #F5F5F5 — app shell */
+  --bg-surface:      var(--color-white);       /* #FFFFFF — cards */
+  --bg-elevated:     var(--color-white);       /* bottom sheets, modals */
+
+  /* Text */
+  --text-primary:    var(--color-black);
+  --text-secondary:  #75757E;
+  --text-tertiary:   #717171;
+  --text-disabled:   var(--color-grey-600);
+  --text-on-brand:   var(--color-white);
+  --text-inverse:    var(--color-white);
+
+  /* Borders */
+  --border-default:  var(--color-grey-200);
+  --border-subtle:   var(--color-grey-100);
+  --border-strong:   var(--color-grey-400);
+
+  /* Status */
+  --status-success:  var(--color-herbal-500);
+  --status-warning:  var(--color-yellow-500);
+  --status-error:    var(--color-cool-red-500);
+  --status-info:     var(--color-blue-500);
+
+  /* Status backgrounds (light tint) */
+  --status-success-bg: var(--color-herbal-50);
+  --status-warning-bg: #FFFDE6;
+  --status-error-bg:   var(--color-cool-red-50);
+  --status-info-bg:    var(--color-blue-50);
+
+  /* Interactive */
+  --interactive-default: var(--brand);
+  --interactive-hover:   var(--brand-dark);
+  --interactive-pressed: var(--color-primary-700);
+  --interactive-disabled: var(--color-grey-400);
+
+  /* Badge colors */
+  --badge-promo:     var(--color-primary-500);  /* -30% Off etc */
+  --badge-new:       var(--color-herbal-600);
+  --badge-24:        var(--color-herbal-500);   /* 24/7 green badge */
+  --badge-free:      var(--color-herbal-600);
+
+  /* Gradients */
+  --gradient-splus:  linear-gradient(135deg, var(--color-splus-1), var(--color-splus-2), var(--color-splus-3));
+  --gradient-skeleton: linear-gradient(90deg, var(--color-grey-200), rgba(245,245,245,0.4));
+}
+
+/* Dark mode overrides */
+:root[data-theme="dark"], .dark {
+  --bg-app:        var(--color-graphite-900);
+  --bg-surface:    var(--color-graphite-800);
+  --bg-elevated:   var(--color-graphite-700);
+  --text-primary:  rgba(255,255,255,0.88);
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-tertiary:  rgba(255,255,255,0.40);
+  --text-disabled:  rgba(255,255,255,0.24);
+  --border-default: rgba(255,255,255,0.08);
+  --border-subtle:  rgba(255,255,255,0.04);
+}
+
+/* ─────────────────────────────────────────────
+   SPACING
+   ───────────────────────────────────────────── */
+
+:root {
+  --space-0:  0px;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;     /* ★ standard screen padding */
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-17: 68px;
+  --space-20: 80px;
+  --space-22: 88px;
+  --space-24: 96px;
+
+  /* Semantic spacing */
+  --screen-h-pad:  var(--space-4);   /* 16px horizontal screen padding */
+  --section-gap:   var(--space-3);   /* 12px between sections */
+  --card-pad:      var(--space-4);   /* 16px card inner padding */
+  --card-gap:      var(--space-3);   /* 12px between cards */
+  --item-gap:      var(--space-2);   /* 8px between list items */
+}
+
+/* ─────────────────────────────────────────────
+   BORDER RADIUS
+   ───────────────────────────────────────────── */
+
+:root {
+  --radius-none: 0px;
+  --radius-xs:   4px;
+  --radius-sm:   8px;     /* tags, small badges */
+  --radius-md:   12px;    /* cards, inputs, chips */
+  --radius-lg:   20px;    /* large cards */
+  --radius-xl:   24px;    /* hero banners, bottom sheets */
+  --radius-2xl:  28px;    /* prominent hero elements */
+  --radius-pill: 100px;   /* buttons, pills */
+}
+
+/* ─────────────────────────────────────────────
+   SHADOWS / ELEVATION
+   ───────────────────────────────────────────── */
+
+:root {
+  --shadow-none:   none;
+  --shadow-sm:     0 1px 4px rgba(0,0,0,0.08);   /* cards on grey bg */
+  --shadow-md:     0 2px 8px rgba(0,0,0,0.10);   /* hover state */
+  --shadow-lg:     0 4px 16px rgba(0,0,0,0.16);  /* modals, sheets */
+  --shadow-xl:     0 8px 32px rgba(0,0,0,0.24);  /* prominent overlays */
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+   ───────────────────────────────────────────── */
+
+:root {
+  /* Font families */
+  --font-en:  "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-ar:  "Estedad", "Noto Sans Arabic", "Cairo", sans-serif;
+  --font:     var(--font-en);  /* default */
+
+  /* Font sizes */
+  --fsize-10: 10px;
+  --fsize-12: 12px;
+  --fsize-13: 13px;
+  --fsize-14: 14px;
+  --fsize-16: 16px;
+  --fsize-18: 18px;
+  --fsize-20: 20px;
+  --fsize-24: 24px;
+  --fsize-30: 30px;
+  --fsize-32: 32px;
+
+  /* Line heights */
+  --lh-12: 12px;
+  --lh-14: 14px;
+  --lh-16: 16px;
+  --lh-20: 20px;
+  --lh-22: 22px;
+  --lh-24: 24px;
+  --lh-28: 28px;
+  --lh-32: 32px;
+  --lh-36: 36px;
+  --lh-38: 38px;
+
+  /* Letter spacing (negative tracking at display sizes) */
+  --ls-display:   -0.69px;
+  --ls-display-sm: -0.64px;
+  --ls-h1:        -0.47px;
+  --ls-h2:        -0.33px;
+  --ls-h3:        -0.26px;
+  --ls-h4:        -0.18px;
+  --ls-body:      -0.18px;
+  --ls-small:     -0.09px;
+  --ls-xs:         0.01px;
+  --ls-label:      0.60px;  /* uppercase eyebrow labels */
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY UTILITY CLASSES
+   ───────────────────────────────────────────── */
+
+/* Display */
+.text-display {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-32);
+  font-weight: 700;
+  line-height: var(--lh-38);
+  letter-spacing: var(--ls-display);
+}
+
+.text-display-sm {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-30);
+  font-weight: 700;
+  line-height: var(--lh-36);
+  letter-spacing: var(--ls-display-sm);
+}
+
+/* Headings */
+.text-h1 {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-24);
+  font-weight: 700;
+  line-height: var(--lh-32);
+  letter-spacing: var(--ls-h1);
+}
+
+.text-h2 {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-20);
+  font-weight: 700;
+  line-height: var(--lh-28);
+  letter-spacing: var(--ls-h2);
+}
+
+.text-h3 {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-18);
+  font-weight: 700;
+  line-height: var(--lh-24);
+  letter-spacing: var(--ls-h3);
+}
+
+.text-h4 {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-16);
+  font-weight: 700;
+  line-height: var(--lh-20);
+  letter-spacing: var(--ls-h4);
+}
+
+/* Body */
+.text-base {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-16);
+  font-weight: 400;
+  line-height: var(--lh-22);
+  letter-spacing: var(--ls-body);
+}
+
+.text-base-strong {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-16);
+  font-weight: 600;
+  line-height: var(--lh-20);
+  letter-spacing: var(--ls-body);
+}
+
+.text-sm {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-14);
+  font-weight: 400;
+  line-height: var(--lh-20);
+  letter-spacing: var(--ls-small);
+}
+
+.text-sm-strong {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-14);
+  font-weight: 600;
+  line-height: var(--lh-20);
+  letter-spacing: var(--ls-small);
+}
+
+/* Captions */
+.text-caption {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-12);
+  font-weight: 400;
+  line-height: var(--lh-16);
+  letter-spacing: var(--ls-xs);
+}
+
+.text-caption-strong {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-12);
+  font-weight: 600;
+  line-height: var(--lh-16);
+}
+
+/* Label / Eyebrow */
+.text-label {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-10);
+  font-weight: 700;
+  line-height: var(--lh-12);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+}
+
+/* NavBar Title */
+.text-navbar {
+  font-family: var(--font-en);
+  font-size:   var(--fsize-16);
+  font-weight: 700;
+  line-height: var(--lh-20);
+  letter-spacing: var(--ls-h4);
+}
+
+/* ─────────────────────────────────────────────
+   COMPONENT HELPERS
+   ───────────────────────────────────────────── */
+
+/* S+ gradient badge */
+.splus-gradient {
+  background: var(--gradient-splus);
+  color: var(--color-white);
+}
+
+/* Discount / promo badge */
+.badge-discount {
+  background: var(--color-primary-500);
+  color: var(--color-white);
+  font-size: var(--fsize-12);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+}
+
+/* 24/7 badge */
+.badge-247 {
+  background: var(--color-herbal-500);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  padding: 2px 6px;
+}
+
+/* Standard card */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Standard button — primary */
+.btn-primary {
+  background: var(--brand);
+  color: var(--text-on-brand);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-en);
+  font-size: var(--fsize-16);
+  font-weight: 600;
+  padding: 14px 24px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.btn-primary:active { opacity: 0.85; }
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  color: var(--brand);
+  border: 1.5px solid var(--brand);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-en);
+  font-size: var(--fsize-16);
+  font-weight: 600;
+  padding: 14px 24px;
+  cursor: pointer;
+}
