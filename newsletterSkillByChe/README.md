@@ -1,4 +1,4 @@
-# Snoonu Product Newsletter Skill
+# Product Newsletter Skill
 
 A reusable Claude skill + template for creating weekly product newsletters as PNG images for Slack DM distribution.
 
@@ -8,7 +8,7 @@ A reusable Claude skill + template for creating weekly product newsletters as PN
 |------|---------|
 | `NEWSLETTER_SKILL.md` | Claude skill prompt — attach to any project |
 | `Newsletter Template.dc.html` | Data-driven newsletter template (Design Component) |
-| `Genie Newsletter.dc.html` | Example: Genie project newsletter (filled) |
+| `Tastr Newsletter.dc.html` | Example: Tastr project newsletter (filled) |
 | `Restaurant Page Newsletter.dc.html` | Example: Restaurant Page project newsletter (filled) |
 
 ## Quick Start
@@ -40,7 +40,7 @@ All content is driven by two methods in the logic class:
   accentColor: '#D90217',           // Brand color (hex)
   logoUrl: '',                      // Path to logo image ('' = auto initial)
   contactName: 'PM Name',           // Footer DM contact
-  footerLine: 'Snoonu Product',     // Footer attribution
+  footerLine: 'Product',     // Footer attribution
   timelineMonths: ['Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
   showStatus: true,                 // Toggle: Status at a Glance
   showRoadmap: true,                // Toggle: Roadmap timeline
@@ -102,7 +102,7 @@ All content is driven by two methods in the logic class:
 
 ## Accent Color Presets
 
-- Snoonu Red: `#D90217`
+- Tastr Brown: `#6B3914`
 - Purple: `#6366F1`
 - Blue: `#0EA5E9`
 - Green: `#22C55E`
@@ -116,8 +116,8 @@ PNG export at 2x resolution (1440px wide). For long newsletters, split into 2 pa
 
 ## Examples
 
-### Genie Newsletter
-AI-powered search across food, grocery, pharmacy, marketplace. See `Genie Newsletter.dc.html`.
+### Tastr Newsletter
+AI-powered search across food, grocery, pharmacy, marketplace. See `Tastr Newsletter.dc.html`.
 
 ### Restaurant Page Newsletter
 Redesigned merchant page with 6 iterations, +5.5% conversion lift. See `Restaurant Page Newsletter.dc.html`.

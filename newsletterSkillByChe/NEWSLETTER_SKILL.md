@@ -15,7 +15,7 @@ The project contains `Newsletter Template.dc.html` — a fully data-driven newsl
 - `accentColor` — Brand hex color (e.g. `#D90217`)
 - `logoUrl` — Path to logo image (or `''` for auto-generated initial)
 - `contactName` — PM name for the footer DM prompt
-- `footerLine` — Attribution line (e.g. `Snoonu Product · Team Name`)
+- `footerLine` — Attribution line (e.g. `Product · Team Name`)
 - `timelineMonths` — Array of month abbreviations for the roadmap timeline
 - `showStatus` / `showRoadmap` / `showCTA` / `showCurrentStatus` — Toggle sections
 
@@ -56,7 +56,7 @@ The project contains `Newsletter Template.dc.html` — a fully data-driven newsl
 | `due` | Amber `#FFF7E6` | ● `#E6960A` | Custom date |
 
 ## Accent color presets
-- Snoonu Red: `#D90217`
+- Tastr Brown: `#6B3914`
 - Purple: `#6366F1`
 - Blue: `#0EA5E9`
 - Green: `#22C55E`
