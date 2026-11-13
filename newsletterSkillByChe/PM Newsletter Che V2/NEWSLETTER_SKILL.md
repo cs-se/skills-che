@@ -1,3 +1,7 @@
+---
+name: Product Newsletter
+description: Use when a PM asks to create or update a weekly/biweekly product newsletter for Slack distribution. More details under readme.md
+---
 # Skill: Product Newsletter
 
 ## When to use

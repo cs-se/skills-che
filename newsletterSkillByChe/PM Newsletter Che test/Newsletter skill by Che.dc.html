@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #F5F5F5; display: flex; justify-content: center; padding: 32px 16px; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  </style>
+</helmet>
+
+<div id="newsletter" style="width: 720px; background: #FFFFFF; border-radius: 20px; font-family: Inter, sans-serif; overflow: hidden;">
+
+  <!-- Header -->
+  <div style="padding: 16px 32px; position: relative; overflow: hidden; display: flex; align-items: center; gap: 20px; background: {{ accentColor }};">
+    <div style="position: absolute; top: -40px; right: -40px; width: 100px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.08);"></div>
+    {{ logoElement }}
+    <div style="flex: 1; min-width: 0;">
+      <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 4px;">
+        <div style="background: rgba(255,255,255,0.2); border-radius: 100px; padding: 2px 10px; font-size: 10px; font-weight: 600; color: #fff; letter-spacing: 1px; text-transform: uppercase;">Product Update</div>
+        <div style="background: rgba(255,255,255,0.2); border-radius: 100px; padding: 2px 10px; font-size: 10px; font-weight: 600; color: #fff;">{{ issueDate }}</div>
+        <div style="background: rgba(255,255,255,0.3); border-radius: 100px; padding: 2px 10px; font-size: 10px; font-weight: 600; color: #fff;">{{ issueLabel }}</div>
+      </div>
+      <div style="font-size: 24px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px; line-height: 1.1;">{{ headline }}</div>
+      <sc-if value="{{ subheadline }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 4px;">{{ subheadline }}</div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- Status at a Glance -->
+  <sc-if value="{{ showStatus }}" hint-placeholder-val="{{ true }}">
+  <div id="section-overview">
+  <div style="padding: 16px 40px 12px;">
+    <div style="font-size: 11px; font-weight: 700; color: #B4B4B4; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;">Status at a Glance</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <div style="background: #F5F5F5; border-radius: 12px; padding: 14px 16px;">
+        <div style="font-size: 11px; font-weight: 600; color: #8C8C8D; margin-bottom: 4px;">Target Launch</div>
+        <div style="font-size: 15px; font-weight: 700; color: #000;">{{ targetLaunch }}</div>
+        <div style="font-size: 12px; color: #8C8C8D; margin-top: 4px; white-space: pre-line;">{{ launchNotes }}</div>
+      </div>
+      <div style="background: #F5F5F5; border-radius: 12px; padding: 14px 16px;">
+        <div style="font-size: 11px; font-weight: 600; color: #8C8C8D; margin-bottom: 4px;">Scope</div>
+        <div style="font-size: 13px; font-weight: 600; color: #000; line-height: 1.4;">{{ scope }}</div>
+      </div>
+      <div style="background: #F5F5F5; border-radius: 12px; padding: 14px 16px; grid-column: 1 / -1;">
+        <div style="font-size: 11px; font-weight: 600; color: #8C8C8D; margin-bottom: 4px;">Teams Involved</div>
+        <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px;">
+          {{ teamsChips }}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ showStatus }}" hint-placeholder-val="{{ true }}">
+    <div style="height: 1px; background: #EAEAEA; margin: 0 40px;"></div>
+  </sc-if>
+
+  <!-- Roadmap -->
+  <sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+  <div style="padding: 14px 40px 14px;">
+    <div style="font-size: 11px; font-weight: 700; color: #B4B4B4; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">Roadmap</div>
+
+    <!-- Phase chips above timeline -->
+    <sc-if value="{{ showTopPhases }}" hint-placeholder-val="{{ true }}">
+      {{ topPhasesHTML }}
+    </sc-if>
+
+    <!-- Timeline bar -->
+    <div style="position: relative; margin-bottom: 16px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        {{ monthLabels }}
+      </div>
+      <div style="position: relative; height: 8px; background: #EAEAEA; border-radius: 100px;">
+        <div style="position: absolute; left: 0; top: 0; height: 8px; border-radius: 100px; width: {{ progressPct }}; background: {{ accentGradient }};"></div>
+        <div style="position: absolute; top: -6px; transform: translateX(-50%); left: {{ progressPct }};">
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 3px solid #fff; background: {{ accentColor }}; box-shadow: 0 0 0 2px {{ accentColor }};"></div>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <div style="position: absolute; transform: translateX(-50%); top: 10px; text-align: center; left: {{ progressPct }};">
+          <div style="font-size: 11px; font-weight: 700; white-space: nowrap; color: {{ accentColor }};">We are here</div>
+        </div>
+      </div>
+      <!-- Milestone marker -->
+      <sc-if value="{{ showMilestone }}" hint-placeholder-val="{{ true }}">
+        <div style="position: absolute; top: -6px; transform: translateX(-50%); left: {{ milestonePct }};">
+          <div style="width: 20px; height: 20px; background: #22C55E; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #22C55E;"></div>
+        </div>
+        <div style="position: absolute; transform: translateX(-50%); top: 36px; text-align: center; left: {{ milestonePct }};">
+          <div style="font-size: 10px; font-weight: 700; color: #22C55E; white-space: nowrap;">{{ milestoneDate }}</div>
+          <div style="font-size: 10px; font-weight: 600; color: #8C8C8D; white-space: nowrap;">{{ milestoneLabel }}</div>
+        </div>
+      </sc-if>
+
+      <!-- Phase labels below timeline -->
+      <sc-if value="{{ showBottomPhases }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 28px;">{{ bottomPhasesHTML }}</div>
+      </sc-if>
+    </div>
+
+    <!-- Key Dates -->
+    <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+      {{ keyDatesHTML }}
+    </div>
+  </div>
+  <div style="height: 1px; background: #EAEAEA; margin: 0 40px;"></div>
+  </sc-if>
+
+  <!-- CTA Section -->
+  <sc-if value="{{ showCTA }}" hint-placeholder-val="{{ true }}">
+  <div style="padding: 0 40px 16px; margin-top: 12px;">
+    <div style="background: linear-gradient(135deg, #FFF5F5 0%, #FFF0EB 50%, #FFF8F0 100%); border-radius: 16px; padding: 16px 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+        {{ ctaLogoElement }}
+        <div>
+          <a href="{{ ctaLink }}" style="font-size: 14px; font-weight: 700; text-decoration: underline; color: {{ accentColor }};">{{ ctaTitle }}</a>
+          <div style="font-size: 11px; color: #8C8C8D; margin-top: 2px;">{{ ctaSubtext }}</div>
+        </div>
+      </div>
+      <sc-if value="{{ hasSampleQueries }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          {{ sampleQueriesHTML }}
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- Current Status Items -->
+  <sc-if value="{{ showCurrentStatus }}" hint-placeholder-val="{{ true }}">
+  <div style="padding: 10px 40px 14px;">
+    <div style="font-size: 11px; font-weight: 700; color: #B4B4B4; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">Current Status</div>
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      {{ statusItemsHTML }}
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- Custom Sections -->
+  <sc-if value="{{ hasCustomSections }}" hint-placeholder-val="{{ false }}">
+    {{ customSectionsHTML }}
+  </sc-if>
+
+  <!-- Footer -->
+  <div style="background: #F5F5F5; padding: 10px 40px; text-align: center;">
+    <div style="font-size: 12px; color: #5A5A5A;">DM <span style="font-weight: 700; color: #000;">{{ contactName }}</span> {{ footerAction }}</div>
+    <div style="font-size: 11px; color: #B4B4B4; margin-top: 4px;">{{ footerLine }}</div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 780, &quot;height&quot;: 1200 },
+  &quot;projectName&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;New Restaurant Page&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Project&quot; },
+  &quot;accentColor&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#D90217&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Project&quot;, &quot;options&quot;: [&quot;#D90217&quot;, &quot;#6366F1&quot;, &quot;#0EA5E9&quot;, &quot;#22C55E&quot;, &quot;#E6960A&quot;] },
+  &quot;contactName&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Denis Pay&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Footer&quot; }
+}">
+class Component extends DCLogic {
+  /*
+   * ============================================================
+   *  SNOONU PRODUCT NEWSLETTER TEMPLATE
+   *  Reusable for any product / project newsletter
+   *
+   *  HOW TO USE:
+   *  1. Copy this file into your project
+   *  2. Update getProjectConfig() with your project details
+   *  3. Update getWeeklyData() every publish cycle
+   *  4. Export as PNG via snapshot_element('#newsletter')
+   * ============================================================
+   */
+
+  // ── PROJECT CONFIG (set once per project) ──────────────────
+  getProjectConfig() {
+    return {
+      projectName: 'New Restaurant Page',
+      accentColor: '#D90217',
+      logoUrl: '',
+      logoWidth: 87,
+      logoHeight: 77,
+      contactName: 'Denis Pay',
+      footerAction: 'for questions or to subscribe',
+      footerLine: 'Snoonu Product · Food Experience Team',
+      timelineMonths: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'],
+      showStatus: true,
+      showRoadmap: true,
+      showCTA: false,
+      showCurrentStatus: true,
+    };
+  }
+
+  // ── WEEKLY DATA (update every publish cycle) ───────────────
+  getWeeklyData() {
+    return {
+      issueDate: 'Aug 10, 2026',
+      issueLabel: 'Issue #1',
+      headline: 'New Restaurant Page',
+      subheadline: 'Redesigning how customers discover and order food',
+
+      targetLaunch: 'Iterative — Oct 2026',
+      launchNotes: 'MVP launched Mar 2026\n+5.5% conversion lift confirmed',
+      scope: 'Redesigned merchant page with compact UI, vertical scrolling, bento boxes, new menu item cards — across 6 iterations.',
+      teams: [
+        { name: 'FOODEX (iOS/Android)', type: 'primary' },
+        { name: 'Backend (New microservice)', type: 'primary' },
+        { name: 'QA', type: 'secondary' },
+        { name: 'Design', type: 'secondary' },
+      ],
+
+      // Jan=0%, Oct=100% → Aug 10 ≈ 78%
+      progressPct: '78%',
+
+      milestone: { pct: '100%', date: 'Oct 31', label: 'Iteration 6 done' },
+
+      topPhases: [
+        { spacer: true, flex: 0.5 },
+        { label: 'MVP', sublabel: 'Jan–Mar', color: '#22C55E', flex: 1.5 },
+        { label: 'Item Page', sublabel: 'Apr', color: '#22C55E', flex: 0.8 },
+        { label: 'Cart', sublabel: 'May', color: '#22C55E', flex: 0.8 },
+        { label: 'BE-driven UI', sublabel: 'Jun–Jul', color: '#22C55E', flex: 1.2 },
+        { label: 'Discovery', sublabel: 'Aug', color: '#E6960A', flex: 0.8 },
+        { label: 'Search + Reels', sublabel: 'Sep–Oct', color: '#6366F1', flex: 1.2 },
+      ],
+      bottomPhases: [],
+
+      keyDates: [
+        { date: 'Mar', text: 'MVP launched — +5.5% conversion', color: '#22C55E' },
+        { date: 'Jul 20', text: 'Bottom nav rollout for restaurant page phase 1', color: '#22C55E' },
+        { date: 'Aug 7', text: 'iOS 5.68 release branch cut — FOODEX bugs in regression', color: '#E6960A' },
+        { date: 'Sep', text: 'Search integration with menu categories', color: '#6366F1' },
+        { date: 'Oct', text: 'Highlights & reels behind merchant icons', color: '#6366F1' },
+      ],
+
+      statusItems: [
+        { name: 'Iteration 1 — MVP (Upper part, Bento, Vertical scroll)', status: 'done' },
+        { name: 'Iteration 2 — New Product Item Page', status: 'done' },
+        { name: 'Iteration 3 — New Cart Page', status: 'done' },
+        { name: 'Iteration 4 — BE-driven Merchant UI', status: 'done' },
+        { name: 'Iteration 5 — Restaurants Discovery Revamp', status: 'wip', subItems: ['Merchant listing', 'Product carousels', 'Filters'] },
+        { name: 'Iteration 6 — Search Integration + Reels', status: 'started' },
+        { name: 'iOS 5.68 Release', status: 'wip', subItems: ['FOODEX bug fixes', 'Analytics fixes', 'Regression testing'] },
+        { name: 'New MP Merchant Page Analytics', status: 'wip', subItems: ['iOS — APOLLO-3617', 'Android — APOLLO-3614'] },
+      ],
+
+      cta: null,
+      customSections: [],
+    };
+  }
+
+  renderVals() {
+    const cfg = this.getProjectConfig();
+    const d = this.getWeeklyData();
+    const accent = this.props.accentColor ?? cfg.accentColor;
+
+    // Logo element
+    const logoElement = cfg.logoUrl
+      ? React.createElement('div', {style:{position:'relative',width:cfg.logoWidth+'px',height:cfg.logoHeight+'px',flexShrink:'0'}},
+          React.createElement('div', {style:{position:'absolute',top:'-8px',left:'50%',transform:'translateX(-50%)',width:'60px',height:'60px',background:'radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%)',borderRadius:'50%',filter:'blur(8px)'}}),
+          React.createElement('img', {src:cfg.logoUrl, style:{width:cfg.logoWidth+'px',height:cfg.logoHeight+'px',objectFit:'contain',filter:'drop-shadow(0 2px 12px rgba(255,255,255,0.25))',position:'relative',zIndex:1}})
+        )
+      : React.createElement('div', {style:{width:'56px',height:'56px',borderRadius:'16px',background:'rgba(255,255,255,0.15)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:'0',fontSize:'28px',fontWeight:'800',color:'#fff'}},
+          (this.props.projectName ?? cfg.projectName).charAt(0).toUpperCase()
+        );
+
+    // Month labels
+    const currentMonth = d.issueDate.split(' ')[0];
+    const monthLabels = React.createElement('div', {style:{display:'contents'}},
+      cfg.timelineMonths.map(m => React.createElement('span', {
+        key: m, style: { fontSize:'12px', fontWeight: m === currentMonth ? '700' : '600', color: m === currentMonth ? accent : '#5A5A5A', width:'50px', textAlign:'center' }
+      }, m))
+    );
+
+    // Team chips
+    const teamsChips = React.createElement('div', {style:{display:'contents'}},
+      d.teams.map((t, i) => React.createElement('div', {
+        key: i, style: { fontSize:'12px', fontWeight:'600', color: t.type === 'primary' ? accent : '#8C8C8D', background: t.type === 'primary' ? this.tint(accent, 0.1) : '#EAEAEA', padding:'3px 10px', borderRadius:'100px' }
+      }, t.name))
+    );
+
+    // Key dates
+    const keyDatesHTML = React.createElement('div', {style:{display:'contents'}},
+      d.keyDates.map((kd, i) => React.createElement('div', {key:i, style:{display:'flex',alignItems:'center',gap:'10px'}},
+        React.createElement('div', {style:{width:'8px',height:'8px',background:kd.color,borderRadius:'50%',flexShrink:'0'}}),
+        React.createElement('div', {style:{fontSize:'12px',color:'#5A5A5A',lineHeight:'1.4'}},
+          React.createElement('span', {style:{fontWeight:'700',color:'#000',marginRight:'4px'}}, kd.date), ' — ' + kd.text
+        )
+      ))
+    );
+
+    // Phase chips (top & bottom)
+    const renderPhases = (phases) => React.createElement('div', {style:{display:'flex',gap:'3px',marginBottom:'8px'}},
+      phases.map((p, i) => p.spacer
+        ? React.createElement('div', {key:i, style:{flex:p.flex || 1}})
+        : React.createElement('div', {key:i, style:{flex:p.flex || 1, background: this.tint(p.color, 0.1), borderRadius:'8px', padding:'8px 6px', textAlign:'center'}},
+            React.createElement('div', {style:{fontSize:'12px',fontWeight:'700',color:p.color}}, p.label),
+            p.sublabel ? React.createElement('div', {style:{fontSize:'9px',color:p.color,opacity:0.7}}, p.sublabel) : null
+          )
+      )
+    );
+
+    // Status items
+    const statusCfg = {
+      done:    { bg:'#F0FDF4', iconBg:'#22C55E', badgeBg:'#DCFCE7', badgeColor:'#22C55E', label:'DONE', icon:'check' },
+      wip:     { bg:'#FFF7E6', iconBg:'#E6960A', badgeBg:'#FFECB3', badgeColor:'#E6960A', label:'WIP', icon:'circle' },
+      started: { bg:'#EEF2FF', iconBg:'#6366F1', badgeBg:'#E0E7FF', badgeColor:'#6366F1', label:'STARTED', icon:'dash' },
+      due:     { bg:'#FFF7E6', iconBg:'#E6960A', badgeBg:'#FFECB3', badgeColor:'#E6960A', label:'', icon:'circle' },
+    };
+    const iconSvg = (type) => {
+      if (type === 'check') return React.createElement('svg',{width:14,height:14,viewBox:'0 0 14 14',fill:'none'},React.createElement('path',{d:'M3.5 7L6 9.5L10.5 4.5',stroke:'#fff',strokeWidth:2,strokeLinecap:'round',strokeLinejoin:'round'}));
+      if (type === 'circle') return React.createElement('svg',{width:14,height:14,viewBox:'0 0 14 14',fill:'none'},React.createElement('circle',{cx:7,cy:7,r:3,fill:'#fff'}));
+      return React.createElement('svg',{width:14,height:14,viewBox:'0 0 14 14',fill:'none'},React.createElement('path',{d:'M4 7h6',stroke:'#fff',strokeWidth:2,strokeLinecap:'round'}));
+    };
+    const statusItemsHTML = React.createElement('div', {style:{display:'contents'}},
+      d.statusItems.map((item, i) => {
+        const c = statusCfg[item.status] || statusCfg.wip;
+        const badge = item.status === 'due' ? (item.dueDate || '') : c.label;
+        return React.createElement('div', {key:i, style:{background:c.bg, borderRadius:'10px', padding:'7px 12px'}},
+          React.createElement('div', {style:{display:'flex',alignItems:'center',gap:'10px'}},
+            React.createElement('div', {style:{width:'20px',height:'20px',background:c.iconBg,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:'0'}}, iconSvg(c.icon)),
+            React.createElement('div', {style:{flex:'1',fontSize:'13px',fontWeight:'600',color:'#000'}}, item.name),
+            React.createElement('div', {style:{fontSize:'12px',fontWeight:'700',color:c.badgeColor,background:c.badgeBg,padding:'3px 10px',borderRadius:'100px',marginLeft:'auto'}}, badge)
+          ),
+          item.subItems ? React.createElement('div', {style:{display:'flex',gap:'5px',marginTop:'5px',paddingLeft:'30px',flexWrap:'wrap'}},
+            item.subItems.map((s,j) => React.createElement('div', {key:j, style:{fontSize:'12px',fontWeight:'600',color:'#5A5A5A',background:'#fff',padding:'3px 10px',borderRadius:'100px',border:'1px solid #E0E0E0'}}, s))
+          ) : null
+        );
+      })
+    );
+
+    // CTA
+    const hasCTA = !!d.cta;
+    const ctaLogoElement = cfg.logoUrl
+      ? React.createElement('img', {src:cfg.logoUrl, style:{width:'36px',height:'36px',objectFit:'contain',flexShrink:'0',filter:'drop-shadow(0 2px 6px rgba(0,0,0,0.15))'}})
+      : React.createElement('div', {style:{width:'36px',height:'36px',borderRadius:'10px',background:accent,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:'0',fontSize:'18px',fontWeight:'800',color:'#fff'}},
+          (this.props.projectName ?? cfg.projectName).charAt(0).toUpperCase()
+        );
+    const sampleQueriesHTML = hasCTA && d.cta.sampleQueries?.length
+      ? React.createElement('div', {style:{display:'contents'}},
+          d.cta.sampleQueries.map((q, i) => React.createElement('div', {key:i, style:{fontSize:'11px',fontWeight:'500',color:'#5A5A5A',background:'#fff',padding:'6px 12px',borderRadius:'100px',border:'1px solid #E0E0E0'}}, '"'+q+'"'))
+        )
+      : null;
+
+    // Custom sections
+    const hasCustomSections = d.customSections && d.customSections.length > 0;
+    const customSectionsHTML = hasCustomSections
+      ? React.createElement('div', {style:{display:'contents'}}, d.customSections)
+      : null;
+
+    return {
+      accentColor: accent,
+      accentGradient: `linear-gradient(90deg, ${accent}, ${this.lighten(accent, 0.15)})`,
+      logoElement,
+      issueDate: d.issueDate,
+      issueLabel: d.issueLabel,
+      headline: d.headline,
+      subheadline: d.subheadline,
+      targetLaunch: d.targetLaunch,
+      launchNotes: d.launchNotes,
+      scope: d.scope,
+      teamsChips,
+      progressPct: d.progressPct,
+      showStatus: cfg.showStatus,
+      showRoadmap: cfg.showRoadmap,
+      showCTA: hasCTA,
+      showCurrentStatus: cfg.showCurrentStatus && d.statusItems.length > 0,
+      showMilestone: !!d.milestone,
+      milestonePct: d.milestone?.pct || '50%',
+      milestoneDate: d.milestone?.date || '',
+      milestoneLabel: d.milestone?.label || '',
+      showTopPhases: d.topPhases && d.topPhases.length > 0,
+      topPhasesHTML: d.topPhases?.length ? renderPhases(d.topPhases) : null,
+      showBottomPhases: d.bottomPhases && d.bottomPhases.length > 0,
+      bottomPhasesHTML: d.bottomPhases?.length ? renderPhases(d.bottomPhases) : null,
+      monthLabels,
+      keyDatesHTML,
+      statusItemsHTML,
+      ctaLogoElement,
+      ctaTitle: d.cta?.title || '',
+      ctaLink: d.cta?.link || '#',
+      ctaSubtext: d.cta?.subtext || '',
+      hasSampleQueries: !!(d.cta?.sampleQueries?.length),
+      sampleQueriesHTML,
+      contactName: this.props.contactName ?? cfg.contactName,
+      footerAction: cfg.footerAction,
+      footerLine: cfg.footerLine,
+      hasCustomSections,
+      customSectionsHTML,
+    };
+  }
+
+  // Utility: create a tinted background from a hex color
+  tint(hex, opacity) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${opacity})`;
+  }
+
+  // Utility: lighten a hex color
+  lighten(hex, amount) {
+    const r = Math.min(255, parseInt(hex.slice(1,3),16) + Math.round(255 * amount));
+    const g = Math.min(255, parseInt(hex.slice(3,5),16) + Math.round(255 * amount));
+    const b = Math.min(255, parseInt(hex.slice(5,7),16) + Math.round(255 * amount));
+    return `rgb(${r},${g},${b})`;
+  }
+}
+</script>
+</body>
+</html>
